@@ -1,0 +1,18 @@
+cd C:\hadoop-2.8.0\bin
+hdfs namenode -format
+cd C:\hadoop-2.8.0\sbin
+start-dfs.cmd
+start-yarn.cmd
+jps (To verify if all processes are running; Namenode, Datanode, Resource
+Manager, Node Manager)
+
+hadoop fs -mkdir -p /kmeans
+
+hadoop fs -copyFromLocal C:/Users/javva/Documents/kmeans/kmean2/centroids.txt /kmeans
+
+hdfs dfs -ls /kmeans
+
+hadoop jar C:\hadoop-2.8.0\share\hadoop\tools\lib\hadoop-streaming-2.8.0.jar -input /kmeans/centroids.txt -output /kmeans/output -file "C:/Users/javva/Documents/kmeans/kmean2/mapper.py" -mapper "python mapper.py" -file "C:/Users/javva/Documents/kmeans/kmean2/reducer.py" -reducer "python reducer.py"
+
+hdfs dfs -text /kmeans/output/* > C:\Users/javva/Documents/kmeans/kmean2/outputfile.txt
+
