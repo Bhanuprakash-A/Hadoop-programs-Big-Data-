@@ -1,0 +1,31 @@
+cd C:\hadoop-2.8.0\sbin
+start-dfs.cmd
+start-yarn.cmd
+jps (To verify if all processes are running; Namenode, Datanode, Resource
+Manager, Node Manager)
+
+
+---------------
+
+LAB-2
+
+--------------
+
+hadoop fs -mkdir -p /weatherdata
+
+-------------
+hadoop fs -copyFromLocal C:/labfiles/lab2/dataset.txt /weatherdata
+------------------------------
+
+hdfs dfs -ls /weatherdata
+
+
+-------------------------------
+hadoop jar C:\hadoop-2.8.0\share\hadoop\tools\lib\hadoop-streaming-2.8.0.jar -input /weatherdata/dataset.txt -output /weatherdata/output -file "C:/labfiles/lab2/mapper.py" -mapper "python mapper.py" -file "C:/labfiles/lab2/reducer.py" -reducer "python reducer.py"
+
+----------------------------------
+
+--------------
+hdfs dfs -text /weatherdata/output/* > C:/labfiles/lab2/outputfile.txt
+----------------------
+hadoop fs -rm -r /weatherdata/output
