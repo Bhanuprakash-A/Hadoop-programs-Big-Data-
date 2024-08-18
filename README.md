@@ -35,9 +35,11 @@ Start YARN (Yet Another Resource Negotiator):
 start-yarn.cmd
 
 Verify that all necessary processes are running:
+
 Use the following command to check if NameNode, DataNode, Resource Manager, and Node Manager are running:
 
 jps
+
 You should see output listing NameNode, DataNode, ResourceManager, and NodeManager.
 
 2. Upload the Dataset to HDFS
@@ -46,6 +48,7 @@ Once Hadoop services are running, upload your dataset to HDFS:
 3. Run the Hadoop MapReduce Job
 
 4. View the Output
+   
 After the MapReduce job completes, you can view the results stored in HDFS:
 
 HDFS (Hadoop Distributed File System)
